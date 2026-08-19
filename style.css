@@ -1,0 +1,614 @@
+/* ========================================
+   RESET & BASE STYLES
+   ======================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    color: #1a1a1a;
+    line-height: 1.6;
+    background-color: #ffffff;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* ========================================
+   CONTAINER
+   ======================================== */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+/* ========================================
+   TYPOGRAPHY
+   ======================================== */
+h1, h2, h3, h4 {
+    font-weight: 300;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+}
+
+/* ========================================
+   BUTTONS
+   ======================================== */
+.btn {
+    display: inline-block;
+    background: #1a1a1a;
+    color: #ffffff;
+    padding: 16px 48px;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 400;
+    font-size: 0.95rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    border: 2px solid #1a1a1a;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background: transparent;
+    color: #1a1a1a;
+}
+
+.btn-outline {
+    background: transparent;
+    color: #1a1a1a;
+}
+
+.btn-outline:hover {
+    background: #1a1a1a;
+    color: #ffffff;
+}
+
+/* ========================================
+   HERO SECTION (Pine Valley Style)
+   ======================================== */
+.hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: #f7f5f0;
+    padding: 40px 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Hero with background image (Pine Valley uses this) */
+.hero.has-image {
+    background: transparent;
+}
+
+.hero-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.25);
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+}
+
+.hero h1 {
+    font-size: clamp(3rem, 10vw, 5.5rem);
+    font-weight: 300;
+    letter-spacing: -0.03em;
+    margin-bottom: 16px;
+    line-height: 1.05;
+    color: #1a1a1a;
+}
+
+.hero.has-image .hero h1 {
+    color: #ffffff;
+}
+
+.hero p {
+    font-size: 1.25rem;
+    color: #555;
+    max-width: 600px;
+    margin: 0 auto 32px;
+    font-weight: 300;
+    letter-spacing: 0.02em;
+}
+
+.hero.has-image .hero p {
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.hero.has-image .btn {
+    background: #ffffff;
+    color: #1a1a1a;
+    border-color: #ffffff;
+}
+
+.hero.has-image .btn:hover {
+    background: transparent;
+    color: #ffffff;
+}
+
+/* ========================================
+   SECTION COMMON STYLES
+   ======================================== */
+.section {
+    padding: 100px 0;
+}
+
+.section-light {
+    background: #f7f5f0;
+}
+
+.section-title {
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    font-weight: 300;
+    text-align: center;
+    margin-bottom: 16px;
+    letter-spacing: -0.02em;
+}
+
+.section-subtitle {
+    text-align: center;
+    color: #777;
+    max-width: 600px;
+    margin: 0 auto 48px;
+    font-weight: 300;
+    font-size: 1.1rem;
+    line-height: 1.7;
+}
+
+/* ========================================
+   IMAGE GRID (Gallery)
+   ======================================== */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.grid-item {
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    position: relative;
+}
+
+.grid-item:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+}
+
+.grid img {
+    width: 100%;
+    height: 340px;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.grid-item:hover img {
+    transform: scale(1.04);
+}
+
+/* Grid with 3 columns (Pine Valley style) */
+.grid-thirds {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+/* ========================================
+   FEATURES / SELLING POINTS
+   ======================================== */
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 40px;
+    margin-top: 20px;
+}
+
+.feature-item {
+    text-align: center;
+    padding: 20px;
+}
+
+.feature-icon {
+    font-size: 2.8rem;
+    display: block;
+    margin-bottom: 12px;
+}
+
+.feature-title {
+    font-weight: 500;
+    font-size: 1.05rem;
+    margin-bottom: 6px;
+}
+
+.feature-desc {
+    font-size: 0.9rem;
+    color: #777;
+    font-weight: 300;
+}
+
+/* ========================================
+   AMENITIES (Pine Valley Style)
+   ======================================== */
+.amenities-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 20px;
+    text-align: center;
+}
+
+.amenity-item {
+    padding: 24px 16px;
+    border-radius: 12px;
+    background: #ffffff;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid #f0ede8;
+}
+
+.amenity-item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+}
+
+.amenity-icon {
+    font-size: 2.2rem;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.amenity-label {
+    font-weight: 400;
+    font-size: 0.95rem;
+    color: #333;
+}
+
+/* ========================================
+   TEXT UTILITIES
+   ======================================== */
+.text-description {
+    max-width: 720px;
+    margin: 0 auto 48px;
+    text-align: center;
+    color: #555;
+    line-height: 1.9;
+    font-weight: 300;
+    font-size: 1.05rem;
+}
+
+.text-description-narrow {
+    max-width: 640px;
+    margin: 0 auto;
+    text-align: center;
+    color: #555;
+    line-height: 1.9;
+    font-weight: 300;
+    font-size: 1.05rem;
+}
+
+/* ========================================
+   HIGHLIGHT / TESTIMONIAL BOX
+   ======================================== */
+.highlight-box {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 48px 56px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.04);
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    border: 1px solid #f0ede8;
+}
+
+.highlight-box p {
+    font-size: 1.2rem;
+    color: #1a1a1a;
+    line-height: 1.8;
+    font-weight: 300;
+}
+
+.highlight-box .attribution {
+    margin-top: 16px;
+    font-style: italic;
+    color: #999;
+    font-size: 0.95rem;
+}
+
+/* ========================================
+   BOOKING CTA SECTION
+   ======================================== */
+.booking-cta {
+    background: #f7f5f0;
+    text-align: center;
+    border-radius: 24px;
+    padding: 64px 48px;
+    margin-top: 20px;
+}
+
+.booking-cta h2 {
+    font-size: clamp(2rem, 3vw, 2.6rem);
+    font-weight: 300;
+    margin-bottom: 12px;
+}
+
+.booking-cta p {
+    color: #555;
+    max-width: 500px;
+    margin: 0 auto 32px;
+    font-weight: 300;
+    font-size: 1.05rem;
+}
+
+.booking-cta .btn {
+    background: #1a1a1a;
+    color: #ffffff;
+    border-color: #1a1a1a;
+}
+
+.booking-cta .btn:hover {
+    background: transparent;
+    color: #1a1a1a;
+}
+
+/* Calendly Embed Container */
+.calendly-container {
+    min-height: 550px;
+    background: #ffffff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.05);
+    margin-top: 16px;
+}
+
+/* ========================================
+   FOOTER
+   ======================================== */
+footer {
+    text-align: center;
+    padding: 48px 0;
+    color: #888;
+    font-size: 0.9rem;
+    border-top: 1px solid #eae7e2;
+    background: #ffffff;
+}
+
+.footer-location {
+    margin-top: 4px;
+    font-size: 0.8rem;
+    color: #aaa;
+}
+
+/* ========================================
+   ANIMATIONS
+   ======================================== */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in {
+    animation: fadeInUp 0.8s ease forwards;
+}
+
+.fade-in-stagger > * {
+    opacity: 0;
+    animation: fadeInUp 0.7s ease forwards;
+}
+
+.fade-in-stagger > *:nth-child(1) { animation-delay: 0.1s; }
+.fade-in-stagger > *:nth-child(2) { animation-delay: 0.2s; }
+.fade-in-stagger > *:nth-child(3) { animation-delay: 0.3s; }
+.fade-in-stagger > *:nth-child(4) { animation-delay: 0.4s; }
+.fade-in-stagger > *:nth-child(5) { animation-delay: 0.5s; }
+.fade-in-stagger > *:nth-child(6) { animation-delay: 0.6s; }
+.fade-in-stagger > *:nth-child(7) { animation-delay: 0.7s; }
+.fade-in-stagger > *:nth-child(8) { animation-delay: 0.8s; }
+
+/* ========================================
+   RESPONSIVE
+   ======================================== */
+
+/* Tablets */
+@media (max-width: 768px) {
+    .section {
+        padding: 60px 0;
+    }
+
+    .hero {
+        min-height: 80vh;
+    }
+
+    .hero h1 {
+        font-size: 2.8rem;
+    }
+
+    .hero p {
+        font-size: 1rem;
+        padding: 0 16px;
+    }
+
+    .btn {
+        padding: 14px 36px;
+        font-size: 0.85rem;
+    }
+
+    .grid {
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 16px;
+    }
+
+    .grid-thirds {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .grid img {
+        height: 240px;
+    }
+
+    .booking-cta {
+        padding: 40px 24px;
+    }
+
+    .booking-cta h2 {
+        font-size: 1.6rem;
+    }
+
+    .calendly-container {
+        min-height: 450px;
+    }
+
+    .amenities-grid {
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+        gap: 12px;
+    }
+
+    .features-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
+    }
+
+    .highlight-box {
+        padding: 32px 24px;
+    }
+
+    .highlight-box p {
+        font-size: 1.05rem;
+    }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+    .container {
+        padding: 0 16px;
+    }
+
+    .section {
+        padding: 40px 0;
+    }
+
+    .hero h1 {
+        font-size: 2.2rem;
+    }
+
+    .hero p {
+        font-size: 0.95rem;
+    }
+
+    .btn {
+        padding: 12px 28px;
+        font-size: 0.8rem;
+    }
+
+    .grid {
+        grid-template-columns: 1fr;
+    }
+
+    .grid-thirds {
+        grid-template-columns: 1fr;
+    }
+
+    .grid img {
+        height: 200px;
+    }
+
+    .booking-cta {
+        padding: 28px 16px;
+        border-radius: 16px;
+    }
+
+    .booking-cta h2 {
+        font-size: 1.3rem;
+    }
+
+    .calendly-container {
+        min-height: 400px;
+    }
+
+    .section-title {
+        font-size: 1.6rem;
+        margin-bottom: 12px;
+    }
+
+    .section-subtitle {
+        font-size: 0.95rem;
+        margin-bottom: 32px;
+    }
+
+    .amenities-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+
+    .amenity-item {
+        padding: 16px 12px;
+    }
+
+    .amenity-icon {
+        font-size: 1.8rem;
+    }
+
+    .features-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .highlight-box {
+        padding: 24px 16px;
+        border-radius: 12px;
+    }
+
+    .highlight-box p {
+        font-size: 0.95rem;
+    }
+
+    .text-description {
+        font-size: 0.95rem;
+    }
+
+    .footer-location {
+        font-size: 0.75rem;
+    }
+}

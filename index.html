@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hillside Caribbean Haven — Bequia Vacation Rental</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Enhanced Styles -->
+    <style>
+        /* ========================================
+           HERO TEXT CONTRAST
+           ======================================== */
+        .hero-content h1 {
+            color: #ffffff !important;
+            text-shadow: 0 2px 40px rgba(0, 0, 0, 0.5), 0 2px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-content p {
+            color: rgba(255, 255, 255, 0.95) !important;
+            text-shadow: 0 2px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .hero-overlay {
+            background: rgba(0, 0, 0, 0.45) !important;
+        }
+
+        .hero.has-image .btn {
+            background: #ffffff;
+            color: #1a1a1a;
+            border-color: #ffffff;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
+        }
+
+        .hero.has-image .btn:hover {
+            background: rgba(255, 255, 255, 0.9);
+            color: #1a1a1a;
+        }
+
+        /* ========================================
+           STICKY NAV
+           ======================================== */
+        .sticky-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 16px 32px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            background: transparent;
+            pointer-events: none;
+        }
+
+        .sticky-nav.scrolled {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            box-shadow: 0 2px 30px rgba(0, 0, 0, 0.08);
+            padding: 12px 32px;
+            pointer-events: all;
+        }
+
+        .sticky-nav .nav-logo {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: #ffffff;
+            opacity: 0;
+            transition: all 0.4s ease;
+            letter-spacing: -0.02em;
+        }
+
+        .sticky-nav.scrolled .nav-logo {
+            opacity: 1;
+            color: #1a1a1a;
+        }
+
+        .sticky-nav .nav-logo span {
+            font-weight: 300;
+        }
+
+        .sticky-nav .nav-cta {
+            background: #1a1a1a;
+            color: #ffffff;
+            padding: 10px 28px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(-8px);
+            pointer-events: none;
+        }
+
+        .sticky-nav.scrolled .nav-cta {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: all;
+        }
+
+        .sticky-nav .nav-cta:hover {
+            background: #333;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+        }
+
+        /* ========================================
+           BACK TO TOP BUTTON
+           ======================================== */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 48px;
+            height: 48px;
+            background: #1a1a1a;
+            color: #ffffff;
+            border: none;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            cursor: pointer;
+            opacity: 0;
+            transform: translateY(20px) scale(0.8);
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            z-index: 999;
+            pointer-events: none;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            pointer-events: all;
+        }
+
+        .back-to-top:hover {
+            background: #333;
+            transform: translateY(-4px) scale(1.05);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        /* ========================================
+           SCROLL ANIMATIONS
+           ======================================== */
+        .section {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Stagger children */
+        .grid > *,
+        .amenities-grid > * {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .section.visible .grid > *,
+        .section.visible .amenities-grid > * {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section.visible .grid > *:nth-child(1) { transition-delay: 0.05s; }
+        .section.visible .grid > *:nth-child(2) { transition-delay: 0.1s; }
+        .section.visible .grid > *:nth-child(3) { transition-delay: 0.15s; }
+        .section.visible .grid > *:nth-child(4) { transition-delay: 0.2s; }
+        .section.visible .grid > *:nth-child(5) { transition-delay: 0.25s; }
+        .section.visible .grid > *:nth-child(6) { transition-delay: 0.3s; }
+
+        .section.visible .amenities-grid > *:nth-child(1) { transition-delay: 0.05s; }
+        .section.visible .amenities-grid > *:nth-child(2) { transition-delay: 0.1s; }
+        .section.visible .amenities-grid > *:nth-child(3) { transition-delay: 0.15s; }
+        .section.visible .amenities-grid > *:nth-child(4) { transition-delay: 0.2s; }
+        .section.visible .amenities-grid > *:nth-child(5) { transition-delay: 0.25s; }
+        .section.visible .amenities-grid > *:nth-child(6) { transition-delay: 0.3s; }
+        .section.visible .amenities-grid > *:nth-child(7) { transition-delay: 0.35s; }
+        .section.visible .amenities-grid > *:nth-child(8) { transition-delay: 0.4s; }
+
+        /* ========================================
+           LIGHTBOX
+           ======================================== */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.92);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            cursor: pointer;
+        }
+
+        .lightbox.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .lightbox img {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            transform: scale(0.9);
+            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .lightbox.active img {
+            transform: scale(1);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 30px;
+            right: 40px;
+            color: #fff;
+            font-size: 2.5rem;
+            font-weight: 300;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            line-height: 1;
+            z-index: 10000;
+        }
+
+        .lightbox-close:hover {
+            transform: rotate(90deg);
+        }
+
+        .lightbox-caption {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1rem;
+            font-weight: 300;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.4);
+            padding: 10px 24px;
+            border-radius: 50px;
+            backdrop-filter: blur(8px);
+        }
+
+        .grid-item {
+            cursor: pointer;
+            position: relative;
+        }
+
+        .grid-item .click-hint {
+            position: absolute;
+            bottom: 16px;
+            right: 16px;
+            background: rgba(0, 0, 0, 0.6);
+            color: #fff;
+            font-size: 0.75rem;
+            padding: 6px 14px;
+            border-radius: 50px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            backdrop-filter: blur(4px);
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        .grid-item:hover .click-hint {
+            opacity: 1;
+        }
+
+        .calendly-container {
+            min-height: 700px;
+            background: #ffffff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.05);
+            margin-top: 16px;
+        }
+
+        /* ========================================
+           RESPONSIVE FIXES
+           ======================================== */
+        @media (max-width: 768px) {
+            .sticky-nav {
+                padding: 12px 16px;
+            }
+
+            .sticky-nav .nav-logo {
+                font-size: 0.9rem;
+            }
+
+            .sticky-nav .nav-cta {
+                padding: 8px 18px;
+                font-size: 0.75rem;
+            }
+
+            .back-to-top {
+                bottom: 20px;
+                right: 20px;
+                width: 42px;
+                height: 42px;
+                font-size: 1rem;
+            }
+
+            .lightbox-close {
+                top: 20px;
+                right: 20px;
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .sticky-nav .nav-logo {
+                font-size: 0.8rem;
+            }
+
+            .sticky-nav .nav-cta {
+                padding: 6px 14px;
+                font-size: 0.7rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ========================
+    STICKY NAVIGATION
+    ======================== -->
+    <nav class="sticky-nav" id="stickyNav">
+        <div class="nav-logo">Hillside <span>Caribbean Haven</span></div>
+        <a href="#booking" class="nav-cta">Book Now</a>
+    </nav>
+
+    <!-- ========================
+    HERO SECTION
+    ======================== -->
+    <header class="hero has-image" id="hero">
+        <img src="images/terrace.jpg" alt="Expansive terrace with breathtaking bay views" class="hero-background" id="heroImage">
+        <div class="hero-overlay"></div>
+        <div class="container hero-content fade-in">
+            <h1>Hillside Caribbean Haven</h1>
+            <p>Breathtaking Bay Views &amp; Outdoor Living in the Heart of Bequia</p>
+            <a href="#booking" class="btn" id="heroCta">Check Availability</a>
+        </div>
+    </header>
+
+    <!-- ========================
+    ABOUT / THE SPACE SECTION
+    ======================== -->
+    <section class="section" id="about">
+        <div class="container">
+            <h2 class="section-title">Welcome to Your Home Away From Home</h2>
+            <p class="section-subtitle">Perched on the lush hillside above Port Elizabeth, this vibrant, multi-level property blends traditional island charm with modern comfort.</p>
+
+            <div class="text-description">
+                <p>Step onto our expansive tiled balcony—the true heart of the home. Here, you'll find a large wooden dining table shaded by a patio umbrella, comfortable lounge chairs, and a BBQ grill, all overlooking sweeping views of the Caribbean Sea and rugged coastline. Whether you're sipping morning coffee as yachts sail into the harbor or grilling fresh local fish at sunset, this terrace is designed for pure relaxation.</p>
+            </div>
+
+            <div class="grid grid-thirds">
+                <div class="grid-item" onclick="openLightbox(this.querySelector('img').src, 'Panoramic bay view from the property')">
+                    <img src="images/hero.jpg" alt="Panoramic bay view from the property">
+                    <span class="click-hint">🔍 Click to enlarge</span>
+                </div>
+                <div class="grid-item" onclick="openLightbox(this.querySelector('img').src, 'Open-plan kitchen with breakfast bar')">
+                    <img src="images/kitchen.jpg" alt="Open-plan kitchen with breakfast bar">
+                    <span class="click-hint">🔍 Click to enlarge</span>
+                </div>
+                <div class="grid-item" onclick="openLightbox(this.querySelector('img').src, 'Shaded arched balcony with comfortable seating')">
+                    <img src="images/balcony.jpg" alt="Shaded arched balcony with seating">
+                    <span class="click-hint">🔍 Click to enlarge</span>
+                </div>
+                <div class="grid-item" onclick="openLightbox(this.querySelector('img').src, 'Sunset views over Port Elizabeth harbor')">
+                    <img src="images/sunset.jpg" alt="Sunset views over Port Elizabeth harbor">
+                    <span class="click-hint">🔍 Click to enlarge</span>
+                </div>
+                <div class="grid-item" onclick="openLightbox(this.querySelector('img').src, 'Cozy bedroom with natural light')">
+                    <img src="images/bedroom.jpg" alt="Cozy bedroom with natural light">
+                    <span class="click-hint">🔍 Click to enlarge</span>
+                </div>
+                <div class="grid-item" onclick="openLightbox(this.querySelector('img').src, 'Harbor view from the property')">
+                    <img src="images/harbor-view.jpg" alt="Harbor view from the property">
+                    <span class="click-hint">🔍 Click to enlarge</span>
+                </div>
+            </div>
+
+            <div class="text-description" style="margin-top: 48px;">
+                <p>Inside, the home is just as inviting. The open-plan kitchen features warm wood cabinetry, a mosaic tile backsplash, stainless steel appliances, and a spacious breakfast bar. It's fully equipped for anything from quick snacks to elaborate island feasts. With multiple levels of shaded, arched balconies, there's always a breezy spot to curl up with a book.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================
+    LOCATION SECTION
+    ======================== -->
+    <section class="section section-light" id="location">
+        <div class="container">
+            <h2 class="section-title">Location</h2>
+            <p class="section-subtitle">Close to the action, while still enjoying total hillside privacy.</p>
+
+            <div class="text-description-narrow">
+                <p>Located just minutes from Port Elizabeth's shops, restaurants, and ferry terminal, you're close to the action while still enjoying total hillside privacy. Whether you're here to explore the pristine beaches of the Grenadines or simply disconnect, this home offers the perfect base for your tropical escape.</p>
+            </div>
+
+            <div style="max-width: 800px; margin: 32px auto 0; border-radius: 12px; overflow: hidden; cursor: pointer;" onclick="openLightbox(this.querySelector('img').src, 'Breathtaking view from the hillside')">
+                <img src="images/view-from-hillside.jpg" alt="View from the hillside" style="width:100%; height:300px; object-fit:cover;">
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================
+    AMENITIES SECTION
+    ======================== -->
+    <section class="section" id="amenities">
+        <div class="container">
+            <h2 class="section-title">Amenities</h2>
+            <p class="section-subtitle">Everything you need for an unforgettable Caribbean getaway.</p>
+
+            <div class="amenities-grid">
+                <div class="amenity-item">
+                    <span class="amenity-icon">🏖️</span>
+                    <span class="amenity-label">Panoramic Bay Views</span>
+                </div>
+                <div class="amenity-item">
+                    <span class="amenity-icon">🍖</span>
+                    <span class="amenity-label">BBQ Grill</span>
+                </div>
+                <div class="amenity-item">
+                    <span class="amenity-icon">🍽️</span>
+                    <span class="amenity-label">Outdoor Dining for 6</span>
+                </div>
+                <div class="amenity-item">
+                    <span class="amenity-icon">🌅</span>
+                    <span class="amenity-label">Sunset Terrace</span>
+                </div>
+                <div class="amenity-item">
+                    <span class="amenity-icon">🍳</span>
+                    <span class="amenity-label">Fully Equipped Kitchen</span>
+                </div>
+                <div class="amenity-item">
+                    <span class="amenity-icon">📶</span>
+                    <span class="amenity-label">High-Speed WiFi</span>
+                </div>
+                <div class="amenity-item">
+                    <span class="amenity-icon">🌴</span>
+                    <span class="amenity-label">Hillside Privacy</span>
+                </div>
+                <div class="amenity-item">
+                    <span class="amenity-icon">🚤</span>
+                    <span class="amenity-label">Near Ferry Terminal</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================
+    EXTRA GALLERY
+    ======================== -->
+    <section class="section section-light" id="gallery">
+        <div class="container">
+            <h2 class="section-title">More of the Haven</h2>
+            <p class="section-subtitle">Every corner of this home is designed for relaxation.</p>
+
+            <div class="grid grid-thirds">
+                <div class="grid-item" onclick="openLightbox(this.querySelector('img').src, 'Beautiful Bequia sunset')">
+                    <img src="images/sunset-2.jpg" alt="Beautiful Bequia sunset">
+                    <span class="click-hint">🔍 Click to enlarge</span>
+                </div>
+                <div class="grid-item" onclick="openLightbox(this.querySelector('img').src, 'Property exterior with lush landscaping')">
+                    <img src="images/exterior.jpg" alt="Property exterior">
+                    <span class="click-hint">🔍 Click to enlarge</span>
+                </div>
+                <div class="grid-item" onclick="openLightbox(this.querySelector('img').src, 'Panoramic bay view from the property')">
+                    <img src="images/hero.jpg" alt="Panoramic bay view">
+                    <span class="click-hint">🔍 Click to enlarge</span>
+                </div>
+                <div class="grid-item" onclick="openLightbox(this.querySelector('img').src, 'Terrace dining area with ocean view')">
+                    <img src="images/terrace.jpg" alt="Terrace with dining area">
+                    <span class="click-hint">🔍 Click to enlarge</span>
+                </div>
+                <div class="grid-item" onclick="openLightbox(this.querySelector('img').src, 'Shaded balcony with comfortable seating')">
+                    <img src="images/balcony.jpg" alt="Shaded balcony seating">
+                    <span class="click-hint">🔍 Click to enlarge</span>
+                </div>
+                <div class="grid-item" onclick="openLightbox(this.querySelector('img').src, 'Hillside view overlooking the Caribbean')">
+                    <img src="images/view-from-hillside.jpg" alt="Hillside view of the property">
+                    <span class="click-hint">🔍 Click to enlarge</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================
+    WHAT MAKES IT SPECIAL
+    ======================== -->
+    <section class="section" id="special">
+        <div class="container">
+            <h2 class="section-title">What Makes This Place Special</h2>
+            <div class="highlight-box">
+                <p>"It's the seamless indoor-outdoor living! Most rentals have a balcony, but our massive tiled terrace is practically an outdoor living room. With a full-size grill, dining for six, and panoramic views of Bequia's famous harbor, you can spend 80% of your vacation right there, soaking in the Caribbean breeze without ever leaving the house."</p>
+                <div class="attribution">— Your Host</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================
+    BOOKING SECTION (Calendly)
+    ======================== -->
+    <section id="booking" class="section">
+        <div class="container">
+            <div class="booking-cta fade-in">
+                <h2>Book Your Stay</h2>
+                <p>Select your dates and secure your tropical escape with a 50% deposit.</p>
+
+                <div class="calendly-container">
+                    <!-- Calendly Inline Widget -->
+                    <div class="calendly-inline-widget" 
+                         data-url="https://calendly.com/brent-glynn88/book-your-stay-at-paradise-villa-bequia" 
+                         style="min-width:320px;height:700px;">
+                    </div>
+                    <script type="text/javascript" 
+                            src="https://assets.calendly.com/assets/external/widget.js" 
+                            async>
+                    </script>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================
+    FOOTER
+    ======================== -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Hillside Caribbean Haven. All rights reserved.</p>
+            <p class="footer-location">Bequia, St. Vincent and the Grenadines</p>
+        </div>
+    </footer>
+
+    <!-- ========================
+    BACK TO TOP BUTTON
+    ======================== -->
+    <button class="back-to-top" id="backToTop" aria-label="Back to top">↑</button>
+
+    <!-- ========================
+    LIGHTBOX HTML
+    ======================== -->
+    <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+        <span class="lightbox-close" onclick="closeLightbox()">✕</span>
+        <img id="lightboxImage" src="" alt="Enlarged view">
+        <div class="lightbox-caption" id="lightboxCaption"></div>
+    </div>
+
+    <!-- ========================
+    JAVASCRIPT (External)
+    ======================== -->
+    <script src="script.js"></script>
+
+</body>
+</html>
