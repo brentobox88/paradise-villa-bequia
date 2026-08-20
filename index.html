@@ -396,13 +396,32 @@
             opacity: 1;
         }
 
-        .calendly-container {
-            min-height: 700px;
+        /* ========================================
+           SAMBA BOOKING CONTAINER
+           ======================================== */
+        .samba-container {
+            min-height: 200px;
             background: #ffffff;
             border-radius: 12px;
             overflow: hidden;
             box-shadow: 0 4px 24px rgba(0, 0, 0, 0.05);
             margin-top: 16px;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .samba-container .samba-widget-wrapper {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        /* Samba button styling override */
+        .samba-container [data-samba-widget="book-now"] {
+            display: inline-block !important;
         }
 
         /* ========================================
@@ -448,6 +467,11 @@
             .property-detail-card .value {
                 font-size: 1rem;
             }
+
+            .samba-container {
+                padding: 12px;
+                min-height: 150px;
+            }
         }
 
         @media (max-width: 480px) {
@@ -472,6 +496,11 @@
             .section-title {
                 font-size: 1.6rem !important;
             }
+
+            .samba-container {
+                padding: 8px;
+                min-height: 120px;
+            }
         }
     </style>
 </head>
@@ -494,7 +523,7 @@
         <div class="container hero-content fade-in">
             <h1>Paradise Villa Bequia</h1>
             <p>Breathtaking Bay Views &amp; Outdoor Living in the Heart of Bequia</p>
-            <a href="#booking" class="btn" id="heroCta">Check Availability</a>
+            <a href="#booking" class="btn" id="heroCta">Book Your Stay</a>
         </div>
     </header>
 
@@ -689,7 +718,7 @@
     </section>
 
     <!-- ========================
-    BOOKING SECTION (Calendly)
+    BOOKING SECTION (Samba)
     ======================== -->
     <section id="booking" class="section">
         <div class="container">
@@ -697,16 +726,17 @@
                 <h2>Book Your Stay</h2>
                 <p>Select your dates and secure your tropical escape with a 50% deposit.</p>
 
-                <div class="calendly-container">
-                    <!-- Calendly Inline Widget -->
-                    <div class="calendly-inline-widget" 
-                         data-url="https://calendly.com/brent-glynn88/book-your-stay-at-paradise-villa-bequia" 
-                         style="min-width:320px;height:700px;">
+                <div class="samba-container">
+                    <div class="samba-widget-wrapper">
+                        <!-- SAMBA BOOKING WIDGET -->
+                        <div data-samba-widget="book-now"
+                             data-samba-workspace="paradise-villa-bequia"
+                             data-samba-label="Book now"
+                             data-samba-size="md"
+                             data-samba-open-in="fullscreen-modal">
+                        </div>
+                        <script src="https://files.sambahq.com/widgets/embed.js" defer></script>
                     </div>
-                    <script type="text/javascript" 
-                            src="https://assets.calendly.com/assets/external/widget.js" 
-                            async>
-                    </script>
                 </div>
             </div>
         </div>
