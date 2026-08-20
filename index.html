@@ -397,10 +397,10 @@
         }
 
         /* ========================================
-           SAMBA BOOKING CONTAINER
+           KIWILAUNCH CONTAINER
            ======================================== */
-        .samba-container {
-            min-height: 200px;
+        .kiwilaunch-container {
+            min-height: 400px;
             background: #ffffff;
             border-radius: 12px;
             overflow: hidden;
@@ -409,18 +409,12 @@
             padding: 20px;
             display: flex;
             justify-content: center;
-            align-items: center;
+            align-items: flex-start;
         }
 
-        .samba-container .samba-widget-wrapper {
+        .kiwilaunch-container kiwi-launch {
             width: 100%;
-            max-width: 600px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .samba-container [data-samba-widget="book-now"] {
-            display: inline-block !important;
+            max-width: 800px;
         }
 
         /* ========================================
@@ -467,9 +461,9 @@
                 font-size: 1rem;
             }
 
-            .samba-container {
+            .kiwilaunch-container {
                 padding: 12px;
-                min-height: 150px;
+                min-height: 350px;
             }
         }
 
@@ -496,9 +490,9 @@
                 font-size: 1.6rem !important;
             }
 
-            .samba-container {
+            .kiwilaunch-container {
                 padding: 8px;
-                min-height: 120px;
+                min-height: 300px;
             }
         }
     </style>
@@ -719,7 +713,7 @@
     </section>
 
     <!-- ========================
-    BOOKING SECTION (Samba)
+    BOOKING SECTION (KiwiLaunch)
     ======================== -->
     <section id="booking" class="section">
         <div class="container">
@@ -727,17 +721,10 @@
                 <h2>Book Your Stay</h2>
                 <p>Select your dates and secure your tropical escape with a 50% deposit.</p>
 
-                <div class="samba-container">
-                    <div class="samba-widget-wrapper">
-                        <!-- SAMBA BOOKING WIDGET -->
-                        <div data-samba-widget="book-now"
-                             data-samba-workspace="paradise-villa-bequia"
-                             data-samba-label="Book now"
-                             data-samba-size="md"
-                             data-samba-open-in="fullscreen-modal">
-                        </div>
-                        <script src="https://files.sambahq.com/widgets/embed.js" defer></script>
-                    </div>
+                <div class="kiwilaunch-container">
+                    <!-- KiwiLaunch Booking Widget -->
+                    <script type="module" src="https://js.kiwilaunch.com/kiwi-launch.js"></script>
+                    <kiwi-launch serviceId="17e22f7c-c87d-4e98-a7ac-1c17b1cc81eb"></kiwi-launch>
                 </div>
             </div>
         </div>
