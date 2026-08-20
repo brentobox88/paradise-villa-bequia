@@ -419,7 +419,6 @@
             text-align: center;
         }
 
-        /* Samba button styling override */
         .samba-container [data-samba-widget="book-now"] {
             display: inline-block !important;
         }
@@ -518,7 +517,7 @@
     HERO SECTION
     ======================== -->
     <header class="hero has-image" id="hero">
-        <img src="images/terrace.jpg" alt="Expansive terrace with breathtaking bay views" class="hero-background" id="heroImage">
+        <img src="images/herobkg.jpeg" alt="Paradise Villa Bequia - Stunning Caribbean views" class="hero-background" id="heroImage">
         <div class="hero-overlay"></div>
         <div class="container hero-content fade-in">
             <h1>Paradise Villa Bequia</h1>
@@ -560,38 +559,40 @@
             </div>
 
             <div class="text-description">
-                <p>Step onto our expansive tiled balcony—the true heart of the home. Here, you'll find a large wooden dining table shaded by a patio umbrella, comfortable lounge chairs, and a BBQ grill, all overlooking sweeping views of the Caribbean Sea and rugged coastline. Whether you're sipping morning coffee as yachts sail into the harbor or grilling fresh local fish at sunset, this terrace is designed for pure relaxation.</p>
+                <p>Step onto our expansive tiled balcony—the true heart of the home. Here, you'll find <strong>two large wooden tables</strong> shaded by patio <strong>umbrellas</strong>, comfortable lounge chairs, and convenient access to a BBQ grill just steps off the balcony. All of this overlooks sweeping views of the Caribbean Sea and rugged coastline. Whether you're sipping morning coffee as yachts sail into the harbor or grilling fresh local fish at sunset, this terrace is designed for pure relaxation.</p>
             </div>
 
+            <!-- EXACT ORDER: sunset, balcony, hero, kitchen, bedroom, harbor-view -->
             <div class="grid grid-thirds">
+                <div class="grid-item" onclick="openLightbox(this.querySelector('img').src, 'Sunset views over Port Elizabeth harbor')">
+                    <img src="images/sunset.jpeg" alt="Sunset views over Port Elizabeth harbor">
+                    <span class="click-hint">🔍 Click to enlarge</span>
+                </div>
+                <div class="grid-item" onclick="openLightbox(this.querySelector('img').src, 'Shaded arched balcony with comfortable seating')">
+                    <img src="images/balcony.jpeg" alt="Shaded arched balcony with comfortable seating">
+                    <span class="click-hint">🔍 Click to enlarge</span>
+                </div>
                 <div class="grid-item" onclick="openLightbox(this.querySelector('img').src, 'Panoramic bay view from the property')">
-                    <img src="images/hero.jpg" alt="Panoramic bay view from the property">
+                    <img src="images/hero.jpeg" alt="Panoramic bay view from the property">
                     <span class="click-hint">🔍 Click to enlarge</span>
                 </div>
                 <div class="grid-item" onclick="openLightbox(this.querySelector('img').src, 'Open-plan kitchen with breakfast bar')">
                     <img src="images/kitchen.jpg" alt="Open-plan kitchen with breakfast bar">
                     <span class="click-hint">🔍 Click to enlarge</span>
                 </div>
-                <div class="grid-item" onclick="openLightbox(this.querySelector('img').src, 'Shaded arched balcony with comfortable seating')">
-                    <img src="images/balcony.jpg" alt="Shaded arched balcony with seating">
-                    <span class="click-hint">🔍 Click to enlarge</span>
-                </div>
-                <div class="grid-item" onclick="openLightbox(this.querySelector('img').src, 'Sunset views over Port Elizabeth harbor')">
-                    <img src="images/sunset.jpg" alt="Sunset views over Port Elizabeth harbor">
-                    <span class="click-hint">🔍 Click to enlarge</span>
-                </div>
                 <div class="grid-item" onclick="openLightbox(this.querySelector('img').src, 'Cozy bedroom with natural light')">
-                    <img src="images/bedroom.jpg" alt="Cozy bedroom with natural light">
+                    <img src="images/bedroom.jpeg" alt="Cozy bedroom with natural light">
                     <span class="click-hint">🔍 Click to enlarge</span>
                 </div>
                 <div class="grid-item" onclick="openLightbox(this.querySelector('img').src, 'Harbor view from the property')">
-                    <img src="images/harbor-view.jpg" alt="Harbor view from the property">
+                    <img src="images/harbor-view.jpeg" alt="Harbor view from the property">
                     <span class="click-hint">🔍 Click to enlarge</span>
                 </div>
             </div>
 
             <div class="text-description" style="margin-top: 48px;">
-                <p>Inside, the home is just as inviting. The open-plan kitchen features warm wood cabinetry, a mosaic tile backsplash, stainless steel appliances, and a spacious breakfast bar. It's fully equipped for anything from quick snacks to elaborate island feasts. With multiple levels of shaded, arched balconies, there's always a breezy spot to curl up with a book.</p>
+                <p>Inside, the home is just as inviting. The open-plan kitchen features warm wood cabinetry, a mosaic tile backsplash, stainless steel appliances, and a spacious breakfast bar. It's fully equipped for anything from quick snacks to elaborate island feasts.</p>
+                <p style="margin-top: 16px;">The expansive balcony spans over <strong>1,200 square feet</strong>, offering ample space for hosting everything from intimate dinners to small or medium-sized destination wedding parties. With multiple levels of shaded, arched balconies, there's always a breezy spot to curl up with a book.</p>
             </div>
         </div>
     </section>
@@ -608,8 +609,8 @@
                 <p>Located just minutes from Port Elizabeth's shops, restaurants, and ferry terminal, you're close to the action while still enjoying total hillside privacy. Whether you're here to explore the pristine beaches of the Grenadines or simply disconnect, this home offers the perfect base for your tropical escape.</p>
             </div>
 
-            <div style="max-width: 800px; margin: 32px auto 0; border-radius: 12px; overflow: hidden; cursor: pointer;" onclick="openLightbox(this.querySelector('img').src, 'Breathtaking view from the hillside')">
-                <img src="images/view-from-hillside.jpg" alt="View from the hillside" style="width:100%; height:300px; object-fit:cover;">
+            <div style="max-width: 800px; margin: 32px auto 0; border-radius: 12px; overflow: hidden; cursor: pointer;" onclick="openLightbox(this.querySelector('img').src, 'Port Elizabeth harbor, Bequia')">
+                <img src="images/port-elizabeth-harbor.jpg" alt="Port Elizabeth harbor, Bequia" style="width:100%; height:300px; object-fit:cover;">
             </div>
         </div>
     </section>
@@ -684,6 +685,10 @@
                     <img src="images/exterior.jpg" alt="Property exterior">
                     <span class="click-hint">🔍 Click to enlarge</span>
                 </div>
+                <div class="grid-item" onclick="openLightbox(this.querySelector('img').src, 'Hillside view overlooking the Caribbean')">
+                    <img src="images/view-from-hillside.jpg" alt="Hillside view of the property">
+                    <span class="click-hint">🔍 Click to enlarge</span>
+                </div>
                 <div class="grid-item" onclick="openLightbox(this.querySelector('img').src, 'Panoramic bay view from the property')">
                     <img src="images/hero.jpg" alt="Panoramic bay view">
                     <span class="click-hint">🔍 Click to enlarge</span>
@@ -692,12 +697,8 @@
                     <img src="images/terrace.jpg" alt="Terrace with dining area">
                     <span class="click-hint">🔍 Click to enlarge</span>
                 </div>
-                <div class="grid-item" onclick="openLightbox(this.querySelector('img').src, 'Shaded balcony with comfortable seating')">
-                    <img src="images/balcony.jpg" alt="Shaded balcony seating">
-                    <span class="click-hint">🔍 Click to enlarge</span>
-                </div>
-                <div class="grid-item" onclick="openLightbox(this.querySelector('img').src, 'Hillside view overlooking the Caribbean')">
-                    <img src="images/view-from-hillside.jpg" alt="Hillside view of the property">
+                <div class="grid-item" onclick="openLightbox(this.querySelector('img').src, 'Cozy bedroom with natural light')">
+                    <img src="images/bedroom.jpg" alt="Cozy bedroom with natural light">
                     <span class="click-hint">🔍 Click to enlarge</span>
                 </div>
             </div>
