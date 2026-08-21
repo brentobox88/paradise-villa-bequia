@@ -397,24 +397,27 @@
         }
 
         /* ========================================
-           KIWILAUNCH CONTAINER
+           BOOKING BUTTON
            ======================================== */
-        .kiwilaunch-container {
-            min-height: 400px;
-            background: #ffffff;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.05);
-            margin-top: 16px;
-            padding: 20px;
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
+        .btn-primary {
+            display: inline-block;
+            background: #1a1a1a;
+            color: #ffffff;
+            padding: 18px 48px;
+            border-radius: 50px;
+            font-weight: 500;
+            font-size: 1.2rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: 2px solid #1a1a1a;
+            cursor: pointer;
         }
 
-        .kiwilaunch-container kiwi-launch {
-            width: 100%;
-            max-width: 800px;
+        .btn-primary:hover {
+            background: transparent;
+            color: #1a1a1a;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
         }
 
         /* ========================================
@@ -461,9 +464,9 @@
                 font-size: 1rem;
             }
 
-            .kiwilaunch-container {
-                padding: 12px;
-                min-height: 350px;
+            .btn-primary {
+                padding: 14px 32px;
+                font-size: 1rem;
             }
         }
 
@@ -490,9 +493,10 @@
                 font-size: 1.6rem !important;
             }
 
-            .kiwilaunch-container {
-                padding: 8px;
-                min-height: 300px;
+            .btn-primary {
+                padding: 12px 24px;
+                font-size: 0.9rem;
+                width: 100%;
             }
         }
     </style>
@@ -508,7 +512,7 @@
     </nav>
 
     <!-- ========================
-    HERO SECTION
+    HERO SECTION (herobkg.jpeg)
     ======================== -->
     <header class="hero has-image" id="hero">
         <img src="images/herobkg.jpeg" alt="Paradise Villa Bequia - Stunning Caribbean views" class="hero-background" id="heroImage">
@@ -556,7 +560,7 @@
                 <p>Step onto our expansive tiled balcony—the true heart of the home. Here, you'll find <strong>two large wooden tables</strong> shaded by patio <strong>umbrellas</strong>, comfortable lounge chairs, and convenient access to a BBQ grill just steps off the balcony. All of this overlooks sweeping views of the Caribbean Sea and rugged coastline. Whether you're sipping morning coffee as yachts sail into the harbor or grilling fresh local fish at sunset, this terrace is designed for pure relaxation.</p>
             </div>
 
-            <!-- EXACT ORDER: sunset, balcony, hero, kitchen, bedroom, harbor-view -->
+            <!-- GALLERY: sunset, balcony, hero, kitchen, bedroom, harbor-view -->
             <div class="grid grid-thirds">
                 <div class="grid-item" onclick="openLightbox(this.querySelector('img').src, 'Sunset views over Port Elizabeth harbor')">
                     <img src="images/sunset.jpeg" alt="Sunset views over Port Elizabeth harbor">
@@ -592,7 +596,7 @@
     </section>
 
     <!-- ========================
-    LOCATION SECTION
+    LOCATION SECTION (port-elizabeth-harbor.jpg)
     ======================== -->
     <section class="section section-light" id="location">
         <div class="container">
@@ -603,6 +607,7 @@
                 <p>Located just minutes from Port Elizabeth's shops, restaurants, and ferry terminal, you're close to the action while still enjoying total hillside privacy. Whether you're here to explore the pristine beaches of the Grenadines or simply disconnect, this home offers the perfect base for your tropical escape.</p>
             </div>
 
+            <!-- LOCATION IMAGE -->
             <div style="max-width: 800px; margin: 32px auto 0; border-radius: 12px; overflow: hidden; cursor: pointer;" onclick="openLightbox(this.querySelector('img').src, 'Port Elizabeth harbor, Bequia')">
                 <img src="images/port-elizabeth-harbor.jpg" alt="Port Elizabeth harbor, Bequia" style="width:100%; height:300px; object-fit:cover;">
             </div>
@@ -713,7 +718,7 @@
     </section>
 
     <!-- ========================
-    BOOKING SECTION (KiwiLaunch)
+    BOOKING SECTION (Bookl.ee)
     ======================== -->
     <section id="booking" class="section">
         <div class="container">
@@ -721,10 +726,16 @@
                 <h2>Book Your Stay</h2>
                 <p>Select your dates and secure your tropical escape with a 50% deposit.</p>
 
-                <div class="kiwilaunch-container">
-                    <!-- KiwiLaunch Booking Widget -->
-                    <script type="module" src="https://js.kiwilaunch.com/kiwi-launch.js"></script>
-                    <kiwi-launch serviceId="17e22f7c-c87d-4e98-a7ac-1c17b1cc81eb"></kiwi-launch>
+                <div style="text-align: center; margin-top: 16px;">
+                    <a href="https://www.bookl.ee/paradisevillabequia" 
+                       target="_blank" 
+                       rel="noopener noreferrer" 
+                       class="btn-primary">
+                        Book Now on Bookl.ee →
+                    </a>
+                    <p style="margin-top: 16px; font-size: 0.9rem; color: #888;">
+                        You will be redirected to our secure booking page to complete your reservation.
+                    </p>
                 </div>
             </div>
         </div>
