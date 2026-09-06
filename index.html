@@ -68,7 +68,7 @@
         p, .text-description, .text-description-narrow, 
         .section-subtitle, .amenity-label, .highlight-box p,
         .hero p, .btn, .property-detail-card .label,
-        footer, .lightbox-caption {
+        footer, .lightbox-caption, .faq-answer {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
         }
 
@@ -128,6 +128,7 @@
 
         .sticky-nav.scrolled {
             background: rgba(255, 255, 255, 0.95);
+            -webkit-backdrop-filter: blur(12px);
             backdrop-filter: blur(12px);
             box-shadow: 0 2px 30px rgba(0, 0, 0, 0.08);
             padding: 12px 32px;
@@ -302,6 +303,75 @@
         }
 
         /* ========================================
+           FAQ SECTION
+           ======================================== */
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid #eae7e2;
+            padding: 6px 0;
+        }
+
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+
+        .faq-question {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            padding: 18px 4px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-family: 'Host Grotesk', 'Inter', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: #1a1a1a;
+            text-align: left;
+            transition: color 0.3s ease;
+        }
+
+        .faq-question:hover {
+            color: #2c7a7b;
+        }
+
+        .faq-icon {
+            flex-shrink: 0;
+            margin-left: 16px;
+            font-size: 1.5rem;
+            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            color: #1a1a1a;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+                        opacity 0.4s ease,
+                        padding 0.3s ease;
+            opacity: 0;
+            padding: 0 4px;
+            color: #555;
+            line-height: 1.8;
+            font-size: 0.98rem;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+            opacity: 1;
+            padding: 0 4px 20px 4px;
+        }
+
+        /* ========================================
            LIGHTBOX
            ======================================== */
         .lightbox {
@@ -468,6 +538,23 @@
                 padding: 14px 32px;
                 font-size: 1rem;
             }
+
+            .faq-question {
+                font-size: 1rem;
+                padding: 14px 4px;
+            }
+
+            .faq-icon {
+                font-size: 1.3rem;
+            }
+
+            .faq-answer {
+                font-size: 0.92rem;
+            }
+
+            .faq-item.active .faq-answer {
+                padding: 0 4px 16px 4px;
+            }
         }
 
         @media (max-width: 480px) {
@@ -497,6 +584,24 @@
                 padding: 12px 24px;
                 font-size: 0.9rem;
                 width: 100%;
+            }
+
+            .faq-question {
+                font-size: 0.92rem;
+                padding: 12px 4px;
+            }
+
+            .faq-icon {
+                font-size: 1.1rem;
+                margin-left: 12px;
+            }
+
+            .faq-answer {
+                font-size: 0.85rem;
+            }
+
+            .faq-item.active .faq-answer {
+                padding: 0 4px 14px 4px;
             }
         }
     </style>
@@ -668,7 +773,7 @@
     </section>
 
     <!-- ========================
-    MORE TO EXPLORE (UPDATED)
+    MORE TO EXPLORE
     ======================== -->
     <section class="section section-light" id="explore">
         <div class="container">
@@ -705,9 +810,109 @@
     </section>
 
     <!-- ========================
+    FAQ SECTION (NEW)
+    ======================== -->
+    <section class="section" id="faq">
+        <div class="container">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            <p class="section-subtitle">Everything you need to know before booking your stay.</p>
+
+            <div class="faq-container">
+                <!-- FAQ Item 1 -->
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFAQ(this)">
+                        <span>How many guests can Paradise Villa Bequia accommodate?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Paradise Villa Bequia comfortably sleeps up to <strong>8 guests</strong> across <strong>3 bedrooms</strong>. With two full bathrooms and spacious living areas, it's perfect for families, groups of friends, or couples traveling together.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 2 -->
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFAQ(this)">
+                        <span>What is the deposit and payment policy?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>We require a <strong>50% deposit</strong> at the time of booking to secure your reservation. The remaining balance is due prior to check-in. All payments are processed securely through Stripe, and we accept all major credit cards.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 3 -->
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFAQ(this)">
+                        <span>Is there air conditioning at the villa?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Yes! The main living area is fully air conditioned, ensuring your comfort during the warm Caribbean days and nights. The villa is designed to capture natural breezes as well, with multiple levels of shaded, arched balconies for cross-ventilation.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 4 -->
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFAQ(this)">
+                        <span>What amenities does the villa offer?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Our villa is fully equipped with everything you need for a comfortable stay: a <strong>fully equipped kitchen</strong> with stainless steel appliances, <strong>high-speed WiFi</strong>, a <strong>BBQ grill</strong>, <strong>outdoor dining for 8</strong>, and a sprawling <strong>1,200 sq ft terrace</strong> with panoramic bay views. Plus, we have two full bathrooms and AC in the main area.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 5 -->
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFAQ(this)">
+                        <span>Is the villa close to restaurants and shops?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Absolutely! Paradise Villa Bequia is located just <strong>minutes from Port Elizabeth's shops, restaurants, and ferry terminal</strong>. You're close to the action while still enjoying total hillside privacy. Whether you're looking for local cuisine or boutique shopping, everything is just a short trip away.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 6 -->
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFAQ(this)">
+                        <span>What is the cancellation policy?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>We understand that plans can change. Please refer to our cancellation policy at the time of booking. For most reservations, we offer a full refund if canceled at least 14 days prior to check-in. For specific details, please review the policy on our Bookl.ee booking page or reach out to us directly.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 7 -->
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFAQ(this)">
+                        <span>Is the villa suitable for weddings or events?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Yes! The expansive <strong>1,200 sq ft terrace</strong> offers ample space for hosting small to medium-sized <strong>destination wedding parties</strong> or family gatherings. With panoramic bay views and seamless indoor-outdoor living, it's the perfect setting for a memorable celebration. Please contact us directly to discuss event details and availability.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 8 -->
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFAQ(this)">
+                        <span>How do I book my stay?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Booking is easy! Simply click the <strong>"Book Now on Bookl.ee"</strong> button below, or visit <a href="https://www.bookl.ee/paradisevillabequia" target="_blank" style="color: #2c7a7b; text-decoration: underline;">our Bookl.ee page</a>. You'll be able to select your dates, view availability, and secure your reservation with a 50% deposit. We're also available via email at <strong>paradisevillabequia1@gmail.com</strong> for any special requests or questions.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================
     WHAT MAKES IT SPECIAL
     ======================== -->
-    <section class="section" id="special">
+    <section class="section section-light" id="special">
         <div class="container">
             <h2 class="section-title">What Makes This Place Special</h2>
             <div class="highlight-box">
@@ -766,9 +971,26 @@
     </div>
 
     <!-- ========================
-    JAVASCRIPT (External)
+    JAVASCRIPT (External + FAQ Toggle)
     ======================== -->
     <script src="script.js"></script>
+    <script>
+        // FAQ Accordion Toggle Function
+        function toggleFAQ(button) {
+            const faqItem = button.closest('.faq-item');
+            const isActive = faqItem.classList.contains('active');
+            
+            // Close all FAQ items
+            document.querySelectorAll('.faq-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            // If the clicked item wasn't active, open it
+            if (!isActive) {
+                faqItem.classList.add('active');
+            }
+        }
+    </script>
 
 </body>
 </html>
