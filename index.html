@@ -605,6 +605,25 @@
             }
         }
     </style>
+
+    <!-- Contentsquare Tracking -->
+<script>
+  (function() {
+    // Load the Contentsquare tag
+    var script = document.createElement('script');
+    script.src = 'https://t.contentsquare.net/9abfcb638222e/tag.js';
+    script.async = true;
+    script.defer = true;
+    script.onload = function() {
+      // Initialize Contentsquare after the tag loads
+      if (window.cs) {
+        window.cs('init', '9abfcb638222e');
+      }
+    };
+    document.head.appendChild(script);
+  })();
+</script>
+
 </head>
 <body>
 
