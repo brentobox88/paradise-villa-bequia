@@ -438,6 +438,7 @@
             background: rgba(0, 0, 0, 0.4);
             padding: 10px 24px;
             border-radius: 50px;
+            -webkit-backdrop-filter: blur(8px);
             backdrop-filter: blur(8px);
         }
 
@@ -457,6 +458,7 @@
             border-radius: 50px;
             opacity: 0;
             transition: opacity 0.3s ease;
+            -webkit-backdrop-filter: blur(4px);
             backdrop-filter: blur(4px);
             pointer-events: none;
             z-index: 2;
@@ -606,23 +608,8 @@
         }
     </style>
 
-    <!-- Contentsquare Tracking -->
-    <script>
-      (function() {
-        // Load the Contentsquare tag
-        var script = document.createElement('script');
-        script.src = 'https://t.contentsquare.net/9abfcb638222e/tag.js';
-        script.async = true;
-        script.defer = true;
-        script.onload = function() {
-          // Initialize Contentsquare after the tag loads
-          if (window.cs) {
-            window.cs('init', '9abfcb638222e');
-          }
-        };
-        document.head.appendChild(script);
-      })();
-    </script>
+    <!-- Contentsquare Tracking (UXA tag) -->
+    <script async src="https://t.contentsquare.net/uxa/9abfcb638222e.js"></script>
 
     <!-- Content Security Policy -->
     <meta http-equiv="Content-Security-Policy" content="script-src 'unsafe-inline' 'unsafe-eval' *.contentsquare.net https://brentobox88.github.io; img-src 'self' *.contentsquare.net data:; connect-src *.contentsquare.net *.contentsquare.com">
@@ -924,7 +911,7 @@
                         <span class="faq-icon">+</span>
                     </button>
                     <div class="faq-answer">
-                        <p>Booking is easy! Simply click the <strong>"Book Now on Bookl.ee"</strong> button below, or visit <a href="https://www.bookl.ee/paradisevillabequia" target="_blank" style="color: #2c7a7b; text-decoration: underline;">our Bookl.ee page</a>. You'll be able to select your dates, view availability, and secure your reservation with a 50% deposit. We're also available via email at <strong>paradisevillabequia1@gmail.com</strong> for any special requests or questions.</p>
+                        <p>Booking is easy! Simply click the <strong>"Book Now on Bookl.ee"</strong> button below, or visit <a href="https://www.bookl.ee/paradisevillabequia" target="_blank" rel="noopener" style="color: #2c7a7b; text-decoration: underline;">our Bookl.ee page</a>. You'll be able to select your dates, view availability, and secure your reservation with a 50% deposit. We're also available via email at <strong>paradisevillabequia1@gmail.com</strong> for any special requests or questions.</p>
                     </div>
                 </div>
             </div>
