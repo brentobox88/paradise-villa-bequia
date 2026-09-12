@@ -366,9 +366,19 @@
         }
 
         .faq-item.active .faq-answer {
-            max-height: 500px;
+            max-height: 600px;
             opacity: 1;
             padding: 0 4px 20px 4px;
+        }
+
+        .faq-answer ul {
+            margin-top: 8px;
+            padding-left: 20px;
+            line-height: 1.8;
+        }
+
+        .faq-answer ul li {
+            margin-bottom: 4px;
         }
 
         /* ========================================
@@ -438,7 +448,6 @@
             background: rgba(0, 0, 0, 0.4);
             padding: 10px 24px;
             border-radius: 50px;
-            -webkit-backdrop-filter: blur(8px);
             backdrop-filter: blur(8px);
         }
 
@@ -458,7 +467,6 @@
             border-radius: 50px;
             opacity: 0;
             transition: opacity 0.3s ease;
-            -webkit-backdrop-filter: blur(4px);
             backdrop-filter: blur(4px);
             pointer-events: none;
             z-index: 2;
@@ -607,13 +615,6 @@
             }
         }
     </style>
-
-    <!-- Contentsquare Tracking (UXA tag) -->
-    <script async src="https://t.contentsquare.net/uxa/9abfcb638222e.js"></script>
-
-    <!-- Content Security Policy -->
-    <meta http-equiv="Content-Security-Policy" content="script-src 'unsafe-inline' 'unsafe-eval' *.contentsquare.net https://brentobox88.github.io; img-src 'self' *.contentsquare.net data:; connect-src *.contentsquare.net *.contentsquare.com">
-
 </head>
 <body>
 
@@ -819,7 +820,7 @@
     </section>
 
     <!-- ========================
-    FAQ SECTION (NEW)
+    FAQ SECTION (UPDATED)
     ======================== -->
     <section class="section" id="faq">
         <div class="container">
@@ -830,55 +831,65 @@
                 <!-- FAQ Item 1 -->
                 <div class="faq-item">
                     <button class="faq-question" onclick="toggleFAQ(this)">
-                        <span>How many guests can Paradise Villa Bequia accommodate?</span>
+                        <span>What is the exact location of the vacation house?</span>
                         <span class="faq-icon">+</span>
                     </button>
                     <div class="faq-answer">
-                        <p>Paradise Villa Bequia comfortably sleeps up to <strong>8 guests</strong> across <strong>3 bedrooms</strong>. With two full bathrooms and spacious living areas, it's perfect for families, groups of friends, or couples traveling together.</p>
+                        <p>Paradise Villa Bequia is perched on the lush hillside above <strong>Port Elizabeth, Bequia</strong>, in St. Vincent and the Grenadines. It's located just minutes from Port Elizabeth's shops, restaurants, and ferry terminal, offering the perfect balance of convenience and hillside privacy. The exact street address is provided upon booking confirmation.</p>
                     </div>
                 </div>
 
                 <!-- FAQ Item 2 -->
                 <div class="faq-item">
                     <button class="faq-question" onclick="toggleFAQ(this)">
-                        <span>What is the deposit and payment policy?</span>
+                        <span>How many bedrooms and bathrooms does the house have?</span>
                         <span class="faq-icon">+</span>
                     </button>
                     <div class="faq-answer">
-                        <p>We require a <strong>50% deposit</strong> at the time of booking to secure your reservation. The remaining balance is due prior to check-in. All payments are processed securely through Stripe, and we accept all major credit cards.</p>
+                        <p>The villa features <strong>3 bedrooms</strong> and <strong>2 full bathrooms</strong> with showers. It comfortably accommodates up to 8 guests.</p>
                     </div>
                 </div>
 
                 <!-- FAQ Item 3 -->
                 <div class="faq-item">
                     <button class="faq-question" onclick="toggleFAQ(this)">
-                        <span>Is there air conditioning at the villa?</span>
+                        <span>What is the maximum occupancy allowed?</span>
                         <span class="faq-icon">+</span>
                     </button>
                     <div class="faq-answer">
-                        <p>Yes! The main living area is fully air conditioned, ensuring your comfort during the warm Caribbean days and nights. The villa is designed to capture natural breezes as well, with multiple levels of shaded, arched balconies for cross-ventilation.</p>
+                        <p>The maximum occupancy is <strong>8 guests</strong>.</p>
                     </div>
                 </div>
 
                 <!-- FAQ Item 4 -->
                 <div class="faq-item">
                     <button class="faq-question" onclick="toggleFAQ(this)">
-                        <span>What amenities does the villa offer?</span>
+                        <span>What amenities are included (e.g., Wi-Fi, air conditioning, and kitchen appliances)?</span>
                         <span class="faq-icon">+</span>
                     </button>
                     <div class="faq-answer">
-                        <p>Our villa is fully equipped with everything you need for a comfortable stay: a <strong>fully equipped kitchen</strong> with stainless steel appliances, <strong>high-speed WiFi</strong>, a <strong>BBQ grill</strong>, <strong>outdoor dining for 8</strong>, and a sprawling <strong>1,200 sq ft terrace</strong> with panoramic bay views. Plus, we have two full bathrooms and AC in the main area.</p>
+                        <p>The villa includes:</p>
+                        <ul>
+                            <li><strong>High-Speed WiFi</strong> throughout</li>
+                            <li><strong>Air Conditioning</strong> in the main living area</li>
+                            <li><strong>Fully equipped kitchen</strong> with warm wood cabinetry, mosaic tile backsplash, stainless steel appliances, and a spacious breakfast bar</li>
+                            <li><strong>BBQ grill</strong> (accessible just steps off the balcony)</li>
+                            <li><strong>Outdoor dining for 8</strong> with two large wooden tables and patio umbrellas</li>
+                            <li><strong>Panoramic bay views</strong> from the expansive 1,200 sq ft terrace</li>
+                            <li><strong>2 full bathrooms</strong> with showers</li>
+                            <li><strong>Multiple levels of shaded, arched balconies</strong></li>
+                        </ul>
                     </div>
                 </div>
 
                 <!-- FAQ Item 5 -->
                 <div class="faq-item">
                     <button class="faq-question" onclick="toggleFAQ(this)">
-                        <span>Is the villa close to restaurants and shops?</span>
+                        <span>Are there any house rules or restrictions (e.g., smoking)?</span>
                         <span class="faq-icon">+</span>
                     </button>
                     <div class="faq-answer">
-                        <p>Absolutely! Paradise Villa Bequia is located just <strong>minutes from Port Elizabeth's shops, restaurants, and ferry terminal</strong>. You're close to the action while still enjoying total hillside privacy. Whether you're looking for local cuisine or boutique shopping, everything is just a short trip away.</p>
+                        <p>Specific house rules are provided at the time of booking. For detailed information, please contact us directly at <strong>paradisevillabequia1@gmail.com</strong>.</p>
                     </div>
                 </div>
 
@@ -889,29 +900,48 @@
                         <span class="faq-icon">+</span>
                     </button>
                     <div class="faq-answer">
-                        <p>We understand that plans can change. Please refer to our cancellation policy at the time of booking. For most reservations, we offer a full refund if canceled at least 14 days prior to check-in. For specific details, please review the policy on our Bookl.ee booking page or reach out to us directly.</p>
+                        <p>We offer a full refund if canceled at least <strong>14 days prior to check-in</strong> for most reservations. For specific details, please review the policy on our Bookl.ee booking page or reach out to us directly.</p>
                     </div>
                 </div>
 
                 <!-- FAQ Item 7 -->
                 <div class="faq-item">
                     <button class="faq-question" onclick="toggleFAQ(this)">
-                        <span>Is the villa suitable for weddings or events?</span>
+                        <span>Is the kitchen fully stocked with cookware and utensils?</span>
                         <span class="faq-icon">+</span>
                     </button>
                     <div class="faq-answer">
-                        <p>Yes! The expansive <strong>1,200 sq ft terrace</strong> offers ample space for hosting small to medium-sized <strong>destination wedding parties</strong> or family gatherings. With panoramic bay views and seamless indoor-outdoor living, it's the perfect setting for a memorable celebration. Please contact us directly to discuss event details and availability.</p>
+                        <p>Yes! The kitchen is <strong>fully equipped</strong> for anything from quick snacks to elaborate island feasts. It features warm wood cabinetry, a mosaic tile backsplash, stainless steel appliances, and a spacious breakfast bar with cookware and utensils provided.</p>
                     </div>
                 </div>
 
                 <!-- FAQ Item 8 -->
                 <div class="faq-item">
                     <button class="faq-question" onclick="toggleFAQ(this)">
-                        <span>How do I book my stay?</span>
+                        <span>Are outdoor facilities available (pool, BBQ grill, patio furniture)?</span>
                         <span class="faq-icon">+</span>
                     </button>
                     <div class="faq-answer">
-                        <p>Booking is easy! Simply click the <strong>"Book Now on Bookl.ee"</strong> button below, or visit <a href="https://www.bookl.ee/paradisevillabequia" target="_blank" rel="noopener" style="color: #2c7a7b; text-decoration: underline;">our Bookl.ee page</a>. You'll be able to select your dates, view availability, and secure your reservation with a 50% deposit. We're also available via email at <strong>paradisevillabequia1@gmail.com</strong> for any special requests or questions.</p>
+                        <p>Yes! The villa features:</p>
+                        <ul>
+                            <li><strong>BBQ grill</strong> (accessible just steps off the balcony)</li>
+                            <li><strong>Two large wooden dining tables</strong> with seating for 8, shaded by patio umbrellas</li>
+                            <li><strong>Comfortable lounge chairs</strong></li>
+                            <li><strong>Expansive 1,200 sq ft tiled terrace</strong> with panoramic bay views</li>
+                            <li><strong>Multiple levels of shaded, arched balconies</strong></li>
+                        </ul>
+                        <p style="margin-top: 8px;"><em>Note: There is no pool at the property.</em></p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 9 -->
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFAQ(this)">
+                        <span>Is there reliable cell phone reception and internet connectivity?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Yes, the villa offers <strong>High-Speed WiFi</strong> throughout the property. Cell phone reception on Bequia is generally reliable, though we recommend checking with your carrier for specific coverage.</p>
                     </div>
                 </div>
             </div>
