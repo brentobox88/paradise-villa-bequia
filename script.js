@@ -1,4 +1,4 @@
-(function() {
+﻿(function() {
     'use strict';
 
     // ========================================
@@ -137,43 +137,38 @@
     let lightboxImages = [];
     let currentImageIndex = 0;
 
-    function getAllLightboxImages() {
+    function getLightboxImages() {
         return Array.from(document.querySelectorAll('.grid-item img')).map(function(img) {
             return {
                 src: img.src,
-                alt: img.alt || ''
+                alt: img.alt || 'Paradise Villa Bequia'
             };
-        });
-    }
-
-    function getCaptions() {
-        // Build captions from alt text or click hints
-        return Array.from(document.querySelectorAll('.grid-item img')).map(function(img) {
-            return img.alt || 'Paradise Villa Bequia';
         });
     }
 
     window.openLightbox = function(imageSrc, caption, element) {
         const lightbox = document.getElementById('lightbox');
         const lightboxImage = document.getElementById('lightboxImage');
-        const lightboxCaption = document.getElementById('lightboxCaption');
-        const lightboxCounter = document.getElementById('lightboxCounter');
 
         if (!lightbox || !lightboxImage) return;
 
-        // Build the full image list from all grid items
-        lightboxImages = getAllLightboxImages();
+        lightboxImages = getLightboxImages();
 
-        // Find the index of the clicked image
-        const allImages = Array.from(document.querySelectorAll('.grid-item img'));
-        currentImageIndex = allImages.findIndex(function(img) {
-            return img.src === imageSrc;
-        });
-        if (currentImageIndex === -1) currentImageIndex = 0;
+        if (element && element.querySelector) {
+            const clickedImg = element.querySelector('img');
+            const allImages = Array.from(document.querySelectorAll('.grid-item img'));
+            currentImageIndex = allImages.indexOf(clickedImg);
+        } else {
+            currentImageIndex = lightboxImages.findIndex(function(img) {
+                return img.src === imageSrc;
+            });
+        }
 
-        // Set the initial image
+        if (currentImageIndex === -1 || currentImageIndex === undefined) {
+            currentImageIndex = 0;
+        }
+
         updateLightboxImage();
-
         lightbox.classList.add('active');
         document.body.style.overflow = 'hidden';
         document.addEventListener('keydown', handleKeydown);
@@ -188,7 +183,9 @@
 
         lightboxImage.src = lightboxImages[currentImageIndex].src;
         lightboxCaption.textContent = lightboxImages[currentImageIndex].alt;
-        lightboxCounter.textContent = (currentImageIndex + 1) + ' / ' + lightboxImages.length;
+        if (lightboxCounter) {
+            lightboxCounter.textContent = (currentImageIndex + 1) + ' / ' + lightboxImages.length;
+        }
     }
 
     function nextImage() {
@@ -232,15 +229,12 @@
         initBackToTop();
         initSmoothScroll();
 
-        // Lightbox navigation buttons
         const prevBtn = document.getElementById('lightboxPrev');
         const nextBtn = document.getElementById('lightboxNext');
         if (prevBtn) prevBtn.addEventListener('click', function(e) { e.stopPropagation(); prevImage(); });
         if (nextBtn) nextBtn.addEventListener('click', function(e) { e.stopPropagation(); nextImage(); });
 
-        // Click on overlay closes lightbox (but not on image or buttons)
         const lightbox = document.getElementById('lightbox');
-        const lightboxImage = document.getElementById('lightboxImage');
         if (lightbox) {
             lightbox.addEventListener('click', function(e) {
                 if (e.target === lightbox) {
@@ -248,15 +242,15 @@
                 }
             });
         }
+
+        const lightboxImage = document.getElementById('lightboxImage');
         if (lightboxImage) {
             lightboxImage.addEventListener('click', function(e) {
                 e.stopPropagation();
             });
         }
 
-        // ========================================
-        // 8. TOUCH/SWIPE SUPPORT FOR LIGHTBOX
-        // ========================================
+        // Touch/swipe support
         let touchStartX = 0;
         let touchEndX = 0;
 
@@ -272,9 +266,9 @@
 
                 if (Math.abs(diff) > swipeThreshold) {
                     if (diff > 0) {
-                        nextImage(); // Swipe left → next
+                        nextImage();
                     } else {
-                        prevImage(); // Swipe right → prev
+                        prevImage();
                     }
                 }
             }, { passive: true });
@@ -282,3 +276,4 @@
     });
 
 })();
+
