@@ -31,7 +31,6 @@
         const hero = document.getElementById('hero');
         let heroHeight = hero ? hero.offsetHeight : 600;
 
-        // Recalculate on resize
         window.addEventListener('resize', function() {
             if (hero) heroHeight = hero.offsetHeight;
         });
@@ -54,7 +53,7 @@
     }
 
     // ========================================
-    // 3. SCROLL ANIMATIONS (Intersection Observer)
+    // 3. SCROLL ANIMATIONS
     // ========================================
     function initScrollAnimations() {
         const sections = document.querySelectorAll('.section');
@@ -75,7 +74,6 @@
                 observer.observe(section);
             });
         } else {
-            // Fallback for older browsers
             sections.forEach(function(section) {
                 section.classList.add('visible');
             });
@@ -107,10 +105,7 @@
 
         button.addEventListener('click', function(e) {
             e.preventDefault();
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         });
     }
 
@@ -130,32 +125,83 @@
                 if (targetElement) {
                     e.preventDefault();
                     const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - navHeight - 20;
-                    window.scrollTo({
-                        top: targetPosition,
-                        behavior: 'smooth'
-                    });
+                    window.scrollTo({ top: targetPosition, behavior: 'smooth' });
                 }
             });
         });
     }
 
     // ========================================
-    // 6. LIGHTBOX FUNCTIONS
+    // 6. LIGHTBOX WITH SWIPE / NEXT-NAVIGATION
     // ========================================
-    window.openLightbox = function(imageSrc, caption) {
+    let lightboxImages = [];
+    let currentImageIndex = 0;
+
+    function getAllLightboxImages() {
+        return Array.from(document.querySelectorAll('.grid-item img')).map(function(img) {
+            return {
+                src: img.src,
+                alt: img.alt || ''
+            };
+        });
+    }
+
+    function getCaptions() {
+        // Build captions from alt text or click hints
+        return Array.from(document.querySelectorAll('.grid-item img')).map(function(img) {
+            return img.alt || 'Paradise Villa Bequia';
+        });
+    }
+
+    window.openLightbox = function(imageSrc, caption, element) {
         const lightbox = document.getElementById('lightbox');
         const lightboxImage = document.getElementById('lightboxImage');
         const lightboxCaption = document.getElementById('lightboxCaption');
+        const lightboxCounter = document.getElementById('lightboxCounter');
 
         if (!lightbox || !lightboxImage) return;
 
-        lightboxImage.src = imageSrc;
-        lightboxCaption.textContent = caption || '';
+        // Build the full image list from all grid items
+        lightboxImages = getAllLightboxImages();
+
+        // Find the index of the clicked image
+        const allImages = Array.from(document.querySelectorAll('.grid-item img'));
+        currentImageIndex = allImages.findIndex(function(img) {
+            return img.src === imageSrc;
+        });
+        if (currentImageIndex === -1) currentImageIndex = 0;
+
+        // Set the initial image
+        updateLightboxImage();
 
         lightbox.classList.add('active');
         document.body.style.overflow = 'hidden';
         document.addEventListener('keydown', handleKeydown);
     };
+
+    function updateLightboxImage() {
+        const lightboxImage = document.getElementById('lightboxImage');
+        const lightboxCaption = document.getElementById('lightboxCaption');
+        const lightboxCounter = document.getElementById('lightboxCounter');
+
+        if (!lightboxImages[currentImageIndex]) return;
+
+        lightboxImage.src = lightboxImages[currentImageIndex].src;
+        lightboxCaption.textContent = lightboxImages[currentImageIndex].alt;
+        lightboxCounter.textContent = (currentImageIndex + 1) + ' / ' + lightboxImages.length;
+    }
+
+    function nextImage() {
+        if (lightboxImages.length === 0) return;
+        currentImageIndex = (currentImageIndex + 1) % lightboxImages.length;
+        updateLightboxImage();
+    }
+
+    function prevImage() {
+        if (lightboxImages.length === 0) return;
+        currentImageIndex = (currentImageIndex - 1 + lightboxImages.length) % lightboxImages.length;
+        updateLightboxImage();
+    }
 
     window.closeLightbox = function() {
         const lightbox = document.getElementById('lightbox');
@@ -169,18 +215,12 @@
     function handleKeydown(e) {
         if (e.key === 'Escape') {
             closeLightbox();
+        } else if (e.key === 'ArrowRight') {
+            nextImage();
+        } else if (e.key === 'ArrowLeft') {
+            prevImage();
         }
     }
-
-    // Prevent closing when clicking on the image itself
-    document.addEventListener('DOMContentLoaded', function() {
-        const lightboxImage = document.getElementById('lightboxImage');
-        if (lightboxImage) {
-            lightboxImage.addEventListener('click', function(e) {
-                e.stopPropagation();
-            });
-        }
-    });
 
     // ========================================
     // 7. INITIALIZE EVERYTHING
@@ -191,6 +231,54 @@
         initScrollAnimations();
         initBackToTop();
         initSmoothScroll();
+
+        // Lightbox navigation buttons
+        const prevBtn = document.getElementById('lightboxPrev');
+        const nextBtn = document.getElementById('lightboxNext');
+        if (prevBtn) prevBtn.addEventListener('click', function(e) { e.stopPropagation(); prevImage(); });
+        if (nextBtn) nextBtn.addEventListener('click', function(e) { e.stopPropagation(); nextImage(); });
+
+        // Click on overlay closes lightbox (but not on image or buttons)
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImage = document.getElementById('lightboxImage');
+        if (lightbox) {
+            lightbox.addEventListener('click', function(e) {
+                if (e.target === lightbox) {
+                    closeLightbox();
+                }
+            });
+        }
+        if (lightboxImage) {
+            lightboxImage.addEventListener('click', function(e) {
+                e.stopPropagation();
+            });
+        }
+
+        // ========================================
+        // 8. TOUCH/SWIPE SUPPORT FOR LIGHTBOX
+        // ========================================
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        if (lightbox) {
+            lightbox.addEventListener('touchstart', function(e) {
+                touchStartX = e.changedTouches[0].screenX;
+            }, { passive: true });
+
+            lightbox.addEventListener('touchend', function(e) {
+                touchEndX = e.changedTouches[0].screenX;
+                const swipeThreshold = 50;
+                const diff = touchStartX - touchEndX;
+
+                if (Math.abs(diff) > swipeThreshold) {
+                    if (diff > 0) {
+                        nextImage(); // Swipe left → next
+                    } else {
+                        prevImage(); // Swipe right → prev
+                    }
+                }
+            }, { passive: true });
+        }
     });
 
 })();

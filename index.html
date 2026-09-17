@@ -41,7 +41,6 @@
             line-height: 1.2;
         }
 
-        /* Specific heading weights */
         .hero h1 {
             font-weight: 700;
             letter-spacing: -0.03em;
@@ -72,7 +71,6 @@
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
         }
 
-        /* Buttons use Inter for cleaner look */
         .btn, .sticky-nav .nav-cta {
             font-family: 'Inter', sans-serif;
             font-weight: 500;
@@ -226,7 +224,6 @@
             transform: translateY(0);
         }
 
-        /* Stagger children */
         .grid > *,
         .amenities-grid > * {
             opacity: 0;
@@ -257,6 +254,8 @@
         .section.visible .amenities-grid > *:nth-child(8) { transition-delay: 0.4s; }
         .section.visible .amenities-grid > *:nth-child(9) { transition-delay: 0.45s; }
         .section.visible .amenities-grid > *:nth-child(10) { transition-delay: 0.5s; }
+        .section.visible .amenities-grid > *:nth-child(11) { transition-delay: 0.55s; }
+        .section.visible .amenities-grid > *:nth-child(12) { transition-delay: 0.6s; }
 
         /* ========================================
            PROPERTY DETAILS CARDS
@@ -381,6 +380,11 @@
             margin-bottom: 4px;
         }
 
+        .faq-answer a {
+            color: #2c7a7b;
+            text-decoration: underline;
+        }
+
         /* ========================================
            LIGHTBOX
            ======================================== */
@@ -397,7 +401,6 @@
             align-items: center;
             opacity: 0;
             transition: opacity 0.4s ease;
-            cursor: pointer;
         }
 
         .lightbox.active {
@@ -436,6 +439,43 @@
             transform: rotate(90deg);
         }
 
+        /* Lightbox Navigation Arrows */
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #fff;
+            font-size: 2.5rem;
+            font-weight: 300;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 10000;
+            background: rgba(255, 255, 255, 0.1);
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            -webkit-backdrop-filter: blur(8px);
+            backdrop-filter: blur(8px);
+            border: none;
+            user-select: none;
+        }
+
+        .lightbox-nav:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .lightbox-prev {
+            left: 30px;
+        }
+
+        .lightbox-next {
+            right: 30px;
+        }
+
         .lightbox-caption {
             position: absolute;
             bottom: 40px;
@@ -449,6 +489,18 @@
             padding: 10px 24px;
             border-radius: 50px;
             backdrop-filter: blur(8px);
+            max-width: 80%;
+        }
+
+        /* Lightbox image counter */
+        .lightbox-counter {
+            position: absolute;
+            top: 30px;
+            left: 40px;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+            font-weight: 300;
+            z-index: 10000;
         }
 
         .grid-item {
@@ -501,6 +553,25 @@
         }
 
         /* ========================================
+           AMENITY DISTANCE (NEW)
+           ======================================== */
+        .amenity-distance {
+            display: block;
+            font-size: 0.72rem;
+            color: #999;
+            margin-top: 4px;
+            font-weight: 300;
+            letter-spacing: 0.01em;
+        }
+
+        .amenity-label {
+            display: block;
+            font-weight: 400;
+            font-size: 0.95rem;
+            color: #333;
+        }
+
+        /* ========================================
            RESPONSIVE FIXES
            ======================================== */
         @media (max-width: 768px) {
@@ -529,6 +600,26 @@
                 top: 20px;
                 right: 20px;
                 font-size: 2rem;
+            }
+
+            .lightbox-nav {
+                width: 44px;
+                height: 44px;
+                font-size: 1.8rem;
+            }
+
+            .lightbox-prev {
+                left: 12px;
+            }
+
+            .lightbox-next {
+                right: 12px;
+            }
+
+            .lightbox-counter {
+                top: 20px;
+                left: 20px;
+                font-size: 0.8rem;
             }
 
             .property-details {
@@ -564,6 +655,10 @@
 
             .faq-item.active .faq-answer {
                 padding: 0 4px 16px 4px;
+            }
+
+            .amenity-distance {
+                font-size: 0.68rem;
             }
         }
 
@@ -613,6 +708,36 @@
             .faq-item.active .faq-answer {
                 padding: 0 4px 14px 4px;
             }
+
+            .lightbox-nav {
+                width: 38px;
+                height: 38px;
+                font-size: 1.4rem;
+            }
+
+            .lightbox-prev {
+                left: 8px;
+            }
+
+            .lightbox-next {
+                right: 8px;
+            }
+
+            .lightbox-caption {
+                font-size: 0.85rem;
+                padding: 8px 16px;
+                bottom: 24px;
+            }
+
+            .lightbox-counter {
+                top: 16px;
+                left: 16px;
+                font-size: 0.75rem;
+            }
+
+            .amenity-distance {
+                font-size: 0.65rem;
+            }
         }
     </style>
 </head>
@@ -647,7 +772,6 @@
             <h2 class="section-title">Welcome to Your Home Away From Home</h2>
             <p class="section-subtitle">Perched on the lush hillside above Port Elizabeth, this vibrant, multi-level property blends traditional island charm with modern comfort.</p>
 
-            <!-- PROPERTY DETAILS CARDS -->
             <div class="property-details fade-in-stagger">
                 <div class="property-detail-card">
                     <span class="icon">🛏️</span>
@@ -675,29 +799,28 @@
                 <p>Step onto our expansive tiled balcony—the true heart of the home. Here, you'll find <strong>two large wooden tables</strong> shaded by patio <strong>umbrellas</strong>, comfortable lounge chairs, and convenient access to a BBQ grill just steps off the balcony. All of this overlooks sweeping views of the Caribbean Sea and rugged coastline. Whether you're sipping morning coffee as yachts sail into the harbor or grilling fresh local fish at sunset, this terrace is designed for pure relaxation.</p>
             </div>
 
-            <!-- GALLERY: sunset, balcony, hero, kitchen, bedroom, harbor-view -->
             <div class="grid grid-thirds">
-                <div class="grid-item" onclick="openLightbox(this.querySelector('img').src, 'Sunset views over Port Elizabeth harbor')">
+                <div class="grid-item" onclick="openLightbox(this.querySelector('img').src, 'Sunset views over Port Elizabeth harbor', this)">
                     <img src="images/sunset.jpeg" alt="Sunset views over Port Elizabeth harbor">
                     <span class="click-hint">🔍 Click to enlarge</span>
                 </div>
-                <div class="grid-item" onclick="openLightbox(this.querySelector('img').src, 'Shaded arched balcony with comfortable seating')">
+                <div class="grid-item" onclick="openLightbox(this.querySelector('img').src, 'Shaded arched balcony with comfortable seating', this)">
                     <img src="images/balcony.jpeg" alt="Shaded arched balcony with comfortable seating">
                     <span class="click-hint">🔍 Click to enlarge</span>
                 </div>
-                <div class="grid-item" onclick="openLightbox(this.querySelector('img').src, 'Panoramic bay view from the property')">
+                <div class="grid-item" onclick="openLightbox(this.querySelector('img').src, 'Panoramic bay view from the property', this)">
                     <img src="images/hero.jpeg" alt="Panoramic bay view from the property">
                     <span class="click-hint">🔍 Click to enlarge</span>
                 </div>
-                <div class="grid-item" onclick="openLightbox(this.querySelector('img').src, 'Open-plan kitchen with breakfast bar')">
+                <div class="grid-item" onclick="openLightbox(this.querySelector('img').src, 'Open-plan kitchen with breakfast bar', this)">
                     <img src="images/kitchen.jpg" alt="Open-plan kitchen with breakfast bar">
                     <span class="click-hint">🔍 Click to enlarge</span>
                 </div>
-                <div class="grid-item" onclick="openLightbox(this.querySelector('img').src, 'Cozy bedroom with natural light')">
+                <div class="grid-item" onclick="openLightbox(this.querySelector('img').src, 'Cozy bedroom with natural light', this)">
                     <img src="images/bedroom.jpeg" alt="Cozy bedroom with natural light">
                     <span class="click-hint">🔍 Click to enlarge</span>
                 </div>
-                <div class="grid-item" onclick="openLightbox(this.querySelector('img').src, 'Harbor view from the property')">
+                <div class="grid-item" onclick="openLightbox(this.querySelector('img').src, 'Harbor view from the property', this)">
                     <img src="images/harbor-view.jpeg" alt="Harbor view from the property">
                     <span class="click-hint">🔍 Click to enlarge</span>
                 </div>
@@ -722,15 +845,14 @@
                 <p>Located just minutes from Port Elizabeth's shops, restaurants, and ferry terminal, you're close to the action while still enjoying total hillside privacy. Whether you're here to explore the pristine beaches of the Grenadines or simply disconnect, this home offers the perfect base for your tropical escape.</p>
             </div>
 
-            <!-- LOCATION IMAGE -->
-            <div style="max-width: 800px; margin: 32px auto 0; border-radius: 12px; overflow: hidden; cursor: pointer;" onclick="openLightbox(this.querySelector('img').src, 'Port Elizabeth harbor, Bequia')">
+            <div style="max-width: 800px; margin: 32px auto 0; border-radius: 12px; overflow: hidden; cursor: pointer;" onclick="openLightbox(this.querySelector('img').src, 'Port Elizabeth harbor, Bequia', this)">
                 <img src="images/port-elizabeth-harbor.jpg" alt="Port Elizabeth harbor, Bequia" style="width:100%; height:300px; object-fit:cover;">
             </div>
         </div>
     </section>
 
     <!-- ========================
-    AMENITIES SECTION
+    AMENITIES SECTION (UPDATED — Items 4, 8, 9, 10)
     ======================== -->
     <section class="section" id="amenities">
         <div class="container">
@@ -741,42 +863,62 @@
                 <div class="amenity-item">
                     <span class="amenity-icon">🏖️</span>
                     <span class="amenity-label">Panoramic Bay Views</span>
+                    <span class="amenity-distance">From every level of the villa</span>
                 </div>
                 <div class="amenity-item">
                     <span class="amenity-icon">🍖</span>
                     <span class="amenity-label">BBQ Grill</span>
+                    <span class="amenity-distance">Gas &amp; charcoal • steps off balcony</span>
                 </div>
                 <div class="amenity-item">
                     <span class="amenity-icon">🍽️</span>
                     <span class="amenity-label">Outdoor Dining for 8</span>
+                    <span class="amenity-distance">On the 1,200 sq ft terrace</span>
                 </div>
                 <div class="amenity-item">
                     <span class="amenity-icon">🌅</span>
                     <span class="amenity-label">Sunset Terrace</span>
+                    <span class="amenity-distance">West-facing for evening sun</span>
                 </div>
                 <div class="amenity-item">
                     <span class="amenity-icon">🍳</span>
                     <span class="amenity-label">Fully Equipped Kitchen</span>
+                    <span class="amenity-distance">Cookware &amp; utensils included</span>
                 </div>
                 <div class="amenity-item">
                     <span class="amenity-icon">❄️</span>
                     <span class="amenity-label">AC in Main Area</span>
+                    <span class="amenity-distance">Main living area only</span>
+                </div>
+                <div class="amenity-item">
+                    <span class="amenity-icon">🚿</span>
+                    <span class="amenity-label">Hot Water</span>
+                    <span class="amenity-distance">Available in both bathrooms</span>
                 </div>
                 <div class="amenity-item">
                     <span class="amenity-icon">📶</span>
                     <span class="amenity-label">High-Speed WiFi</span>
+                    <span class="amenity-distance">Throughout the property</span>
                 </div>
                 <div class="amenity-item">
                     <span class="amenity-icon">🌴</span>
                     <span class="amenity-label">Hillside Privacy</span>
+                    <span class="amenity-distance">Secluded, lush surroundings</span>
                 </div>
                 <div class="amenity-item">
                     <span class="amenity-icon">🚤</span>
                     <span class="amenity-label">Near Ferry Terminal</span>
+                    <span class="amenity-distance">~5 min drive (1.5 km) to Port Elizabeth</span>
                 </div>
                 <div class="amenity-item">
-                    <span class="amenity-icon">🚿</span>
-                    <span class="amenity-label">2 Full Bathrooms</span>
+                    <span class="amenity-icon">🛒</span>
+                    <span class="amenity-label">Near Shops &amp; Restaurants</span>
+                    <span class="amenity-distance">~5 min drive to Port Elizabeth</span>
+                </div>
+                <div class="amenity-item">
+                    <span class="amenity-icon">🏥</span>
+                    <span class="amenity-label">Near Pharmacy &amp; Clinic</span>
+                    <span class="amenity-distance">~7 min drive to Port Elizabeth</span>
                 </div>
             </div>
         </div>
@@ -791,27 +933,27 @@
             <p class="section-subtitle">Discover the beauty and adventure that awaits you on Bequia.</p>
 
             <div class="grid grid-thirds">
-                <div class="grid-item" onclick="openLightbox(this.querySelector('img').src, 'Bahar White Island Reef — Pristine snorkeling and crystal-clear waters')">
+                <div class="grid-item" onclick="openLightbox(this.querySelector('img').src, 'Bahar White Island Reef — Pristine snorkeling and crystal-clear waters', this)">
                     <img src="images/Bahar-White-Island-Reef.jpg" alt="Bahar White Island Reef">
                     <span class="click-hint">🔍 Click to enlarge</span>
                 </div>
-                <div class="grid-item" onclick="openLightbox(this.querySelector('img').src, 'Fort Hamilton — Historic fortress with panoramic bay views')">
+                <div class="grid-item" onclick="openLightbox(this.querySelector('img').src, 'Fort Hamilton — Historic fortress with panoramic bay views', this)">
                     <img src="images/fort1.jpg" alt="Fort Hamilton">
                     <span class="click-hint">🔍 Click to enlarge</span>
                 </div>
-                <div class="grid-item" onclick="openLightbox(this.querySelector('img').src, 'Moonhole — Unique rock-cut homes and stunning coastal views')">
+                <div class="grid-item" onclick="openLightbox(this.querySelector('img').src, 'Moonhole — Unique rock-cut homes and stunning coastal views', this)">
                     <img src="images/moonhole.jpg" alt="Moonhole">
                     <span class="click-hint">🔍 Click to enlarge</span>
                 </div>
-                <div class="grid-item" onclick="openLightbox(this.querySelector('img').src, 'Mount Pleasant — Breathtaking panoramic views of the island')">
+                <div class="grid-item" onclick="openLightbox(this.querySelector('img').src, 'Mount Pleasant — Breathtaking panoramic views of the island', this)">
                     <img src="images/mp.jpg" alt="Mount Pleasant">
                     <span class="click-hint">🔍 Click to enlarge</span>
                 </div>
-                <div class="grid-item" onclick="openLightbox(this.querySelector('img').src, 'Mount Peggy Hiking — Scenic trails with spectacular island views')">
+                <div class="grid-item" onclick="openLightbox(this.querySelector('img').src, 'Mount Peggy Hiking — Scenic trails with spectacular island views', this)">
                     <img src="images/mt-peggyhiking.jpg" alt="Mount Peggy Hiking">
                     <span class="click-hint">🔍 Click to enlarge</span>
                 </div>
-                <div class="grid-item" onclick="openLightbox(this.querySelector('img').src, 'Tobago Cays — World-class snorkeling and sailing destination')">
+                <div class="grid-item" onclick="openLightbox(this.querySelector('img').src, 'Tobago Cays — World-class snorkeling and sailing destination', this)">
                     <img src="images/tobago-cays.jpg" alt="Tobago Cays">
                     <span class="click-hint">🔍 Click to enlarge</span>
                 </div>
@@ -820,7 +962,7 @@
     </section>
 
     <!-- ========================
-    FAQ SECTION (UPDATED)
+    FAQ SECTION (UPDATED — Item 10 Cross-link)
     ======================== -->
     <section class="section" id="faq">
         <div class="container">
@@ -836,6 +978,7 @@
                     </button>
                     <div class="faq-answer">
                         <p>Paradise Villa Bequia is perched on the lush hillside above <strong>Port Elizabeth, Bequia</strong>, in St. Vincent and the Grenadines. It's located just minutes from Port Elizabeth's shops, restaurants, and ferry terminal, offering the perfect balance of convenience and hillside privacy. The exact street address is provided upon booking confirmation.</p>
+                        <p style="margin-top: 8px;">See our <a href="#amenities">Amenities section</a> for approximate travel times to nearby shops, restaurants, and the ferry terminal.</p>
                     </div>
                 </div>
 
@@ -846,7 +989,7 @@
                         <span class="faq-icon">+</span>
                     </button>
                     <div class="faq-answer">
-                        <p>The villa features <strong>3 bedrooms</strong> and <strong>2 full bathrooms</strong> with showers. It comfortably accommodates up to 8 guests.</p>
+                        <p>The villa features <strong>3 bedrooms</strong> and <strong>2 full bathrooms</strong> with showers and hot water. It comfortably accommodates up to 8 guests.</p>
                     </div>
                 </div>
 
@@ -872,8 +1015,9 @@
                         <ul>
                             <li><strong>High-Speed WiFi</strong> throughout</li>
                             <li><strong>Air Conditioning</strong> in the main living area</li>
+                            <li><strong>Hot Water</strong> in both bathrooms</li>
                             <li><strong>Fully equipped kitchen</strong> with warm wood cabinetry, mosaic tile backsplash, stainless steel appliances, and a spacious breakfast bar</li>
-                            <li><strong>BBQ grill</strong> (accessible just steps off the balcony)</li>
+                            <li><strong>BBQ grill</strong> (gas &amp; charcoal) accessible just steps off the balcony</li>
                             <li><strong>Outdoor dining for 8</strong> with two large wooden tables and patio umbrellas</li>
                             <li><strong>Panoramic bay views</strong> from the expansive 1,200 sq ft terrace</li>
                             <li><strong>2 full bathrooms</strong> with showers</li>
@@ -924,7 +1068,7 @@
                     <div class="faq-answer">
                         <p>Yes! The villa features:</p>
                         <ul>
-                            <li><strong>BBQ grill</strong> (accessible just steps off the balcony)</li>
+                            <li><strong>BBQ grill</strong> (gas &amp; charcoal) accessible just steps off the balcony</li>
                             <li><strong>Two large wooden dining tables</strong> with seating for 8, shaded by patio umbrellas</li>
                             <li><strong>Comfortable lounge chairs</strong></li>
                             <li><strong>Expansive 1,200 sq ft tiled terrace</strong> with panoramic bay views</li>
@@ -1001,11 +1145,14 @@
     <button class="back-to-top" id="backToTop" aria-label="Back to top">↑</button>
 
     <!-- ========================
-    LIGHTBOX HTML
+    LIGHTBOX HTML (UPDATED — Item 5)
     ======================== -->
-    <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <div class="lightbox" id="lightbox">
         <span class="lightbox-close" onclick="closeLightbox()">✕</span>
+        <span class="lightbox-counter" id="lightboxCounter"></span>
+        <button class="lightbox-nav lightbox-prev" id="lightboxPrev" aria-label="Previous image">‹</button>
         <img id="lightboxImage" src="" alt="Enlarged view">
+        <button class="lightbox-nav lightbox-next" id="lightboxNext" aria-label="Next image">›</button>
         <div class="lightbox-caption" id="lightboxCaption"></div>
     </div>
 
@@ -1019,12 +1166,10 @@
             const faqItem = button.closest('.faq-item');
             const isActive = faqItem.classList.contains('active');
             
-            // Close all FAQ items
             document.querySelectorAll('.faq-item').forEach(item => {
                 item.classList.remove('active');
             });
             
-            // If the clicked item wasn't active, open it
             if (!isActive) {
                 faqItem.classList.add('active');
             }
