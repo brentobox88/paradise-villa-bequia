@@ -28,7 +28,6 @@
             -moz-osx-font-smoothing: grayscale;
         }
 
-        /* Headings use Host Grotesk */
         h1, h2, h3, h4, h5, h6,
         .hero h1,
         .section-title,
@@ -63,7 +62,6 @@
             font-weight: 600;
         }
 
-        /* Body text remains Inter */
         p, .text-description, .text-description-narrow, 
         .section-subtitle, .amenity-label, .highlight-box p,
         .hero p, .btn, .property-detail-card .label,
@@ -439,7 +437,6 @@
             transform: rotate(90deg);
         }
 
-        /* Lightbox Navigation Arrows */
         .lightbox-nav {
             position: absolute;
             top: 50%;
@@ -492,7 +489,6 @@
             max-width: 80%;
         }
 
-        /* Lightbox image counter */
         .lightbox-counter {
             position: absolute;
             top: 30px;
@@ -553,7 +549,7 @@
         }
 
         /* ========================================
-           AMENITY DISTANCE (NEW)
+           AMENITY DISTANCE
            ======================================== */
         .amenity-distance {
             display: block;
@@ -752,7 +748,7 @@
     </nav>
 
     <!-- ========================
-    HERO SECTION
+    HERO SECTION (UPDATED BUTTON)
     ======================== -->
     <header class="hero has-image" id="hero">
         <img src="images/herobkg.jpeg" alt="Paradise Villa Bequia - Stunning Caribbean views" class="hero-background" id="heroImage">
@@ -760,7 +756,7 @@
         <div class="container hero-content fade-in">
             <h1>Paradise Villa Bequia</h1>
             <p>Breathtaking Bay Views &amp; Outdoor Living in the Heart of Bequia</p>
-            <a href="#booking" class="btn" id="heroCta">Book Your Stay</a>
+            <a href="#about" class="btn" id="heroCta">See More Below</a>
         </div>
     </header>
 
@@ -852,7 +848,7 @@
     </section>
 
     <!-- ========================
-    AMENITIES SECTION (UPDATED — Items 4, 8, 9, 10)
+    AMENITIES SECTION
     ======================== -->
     <section class="section" id="amenities">
         <div class="container">
@@ -962,7 +958,7 @@
     </section>
 
     <!-- ========================
-    FAQ SECTION (UPDATED — Item 10 Cross-link)
+    FAQ SECTION
     ======================== -->
     <section class="section" id="faq">
         <div class="container">
@@ -970,7 +966,6 @@
             <p class="section-subtitle">Everything you need to know before booking your stay.</p>
 
             <div class="faq-container">
-                <!-- FAQ Item 1 -->
                 <div class="faq-item">
                     <button class="faq-question" onclick="toggleFAQ(this)">
                         <span>What is the exact location of the vacation house?</span>
@@ -982,7 +977,6 @@
                     </div>
                 </div>
 
-                <!-- FAQ Item 2 -->
                 <div class="faq-item">
                     <button class="faq-question" onclick="toggleFAQ(this)">
                         <span>How many bedrooms and bathrooms does the house have?</span>
@@ -993,7 +987,6 @@
                     </div>
                 </div>
 
-                <!-- FAQ Item 3 -->
                 <div class="faq-item">
                     <button class="faq-question" onclick="toggleFAQ(this)">
                         <span>What is the maximum occupancy allowed?</span>
@@ -1004,7 +997,6 @@
                     </div>
                 </div>
 
-                <!-- FAQ Item 4 -->
                 <div class="faq-item">
                     <button class="faq-question" onclick="toggleFAQ(this)">
                         <span>What amenities are included (e.g., Wi-Fi, air conditioning, and kitchen appliances)?</span>
@@ -1026,7 +1018,6 @@
                     </div>
                 </div>
 
-                <!-- FAQ Item 5 -->
                 <div class="faq-item">
                     <button class="faq-question" onclick="toggleFAQ(this)">
                         <span>Are there any house rules or restrictions (e.g., smoking)?</span>
@@ -1037,7 +1028,6 @@
                     </div>
                 </div>
 
-                <!-- FAQ Item 6 -->
                 <div class="faq-item">
                     <button class="faq-question" onclick="toggleFAQ(this)">
                         <span>What is the cancellation policy?</span>
@@ -1048,7 +1038,6 @@
                     </div>
                 </div>
 
-                <!-- FAQ Item 7 -->
                 <div class="faq-item">
                     <button class="faq-question" onclick="toggleFAQ(this)">
                         <span>Is the kitchen fully stocked with cookware and utensils?</span>
@@ -1059,7 +1048,6 @@
                     </div>
                 </div>
 
-                <!-- FAQ Item 8 -->
                 <div class="faq-item">
                     <button class="faq-question" onclick="toggleFAQ(this)">
                         <span>Are outdoor facilities available (pool, BBQ grill, patio furniture)?</span>
@@ -1078,7 +1066,6 @@
                     </div>
                 </div>
 
-                <!-- FAQ Item 9 -->
                 <div class="faq-item">
                     <button class="faq-question" onclick="toggleFAQ(this)">
                         <span>Is there reliable cell phone reception and internet connectivity?</span>
@@ -1145,7 +1132,7 @@
     <button class="back-to-top" id="backToTop" aria-label="Back to top">↑</button>
 
     <!-- ========================
-    LIGHTBOX HTML (UPDATED — Item 5)
+    LIGHTBOX HTML
     ======================== -->
     <div class="lightbox" id="lightbox">
         <span class="lightbox-close" onclick="closeLightbox()">✕</span>
@@ -1161,7 +1148,6 @@
     ======================== -->
     <script src="script.js"></script>
     <script>
-        // FAQ Accordion Toggle Function
         function toggleFAQ(button) {
             const faqItem = button.closest('.faq-item');
             const isActive = faqItem.classList.contains('active');
